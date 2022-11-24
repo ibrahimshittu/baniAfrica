@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import { useNavigate } from "react-router-dom";
 
 function LogInContainer() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     return (
         <Container>
@@ -64,6 +67,7 @@ function LogInContainer() {
                         ? false
                         : true
                 }
+                onClick={() => navigate("/account")}
             >
                 Log In
             </button>
@@ -118,6 +122,7 @@ const Container = styled.div`
         border-radius: 8px;
         border: none;
         margin-top: 2rem;
+        cursor: pointer;
     }
 
     button:disabled {
@@ -131,6 +136,7 @@ const Container = styled.div`
         border-radius: 8px;
         border: none;
         margin-top: 2rem;
+        cursor: not-allowed;
     }
 `;
 
