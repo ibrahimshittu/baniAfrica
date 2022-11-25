@@ -7,7 +7,7 @@ import settingII from "../../assets/settingII.svg";
 import copy from "../../assets/copy.svg";
 import more from "../../assets/more.svg";
 
-function YourVirtualAccounts({ banks }) {
+function YourVirtualAccounts({ banks, setSelectedAccount }) {
     return (
         <Container>
             <div className="HeaderContainer">
@@ -44,6 +44,8 @@ function YourVirtualAccounts({ banks }) {
                                 key={index}
                                 color={bank.color}
                                 backgroundColor={bank.backgroundColor}
+                                onClick={() => setSelectedAccount(bank)}
+                                tabIndex="-1"
                             >
                                 <div className="bankLogo">
                                     <img src={bank.image} alt="" />
@@ -266,24 +268,11 @@ const BankDetails = styled.div`
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    background-color: #fff;
+    background-color: "#fff";
     padding-top: 10px;
     padding-bottom: 10px;
     border-top: 0.5px solid rgba(225, 225, 225, 0.8);
     cursor: pointer;
-
-    &:hover {
-        background-color: #f4f3ff;
-        border-left: 4px solid red;
-
-        .bankLogo {
-            width: calc(10% + 25px);
-
-            img {
-                margin-left: 25px;
-            }
-        }
-    }
 
     .bankLogo {
         width: calc(10% + 29px);
@@ -383,5 +372,40 @@ const BankDetails = styled.div`
 
     .more {
         width: 7%;
+    }
+
+    &:focus {
+        background-color: #f5f6fab2;
+        border-left: 4px solid #5444f2;
+
+        .bankLogo {
+            width: calc(10% + 25px);
+
+            img {
+                margin-left: 25px;
+            }
+        }
+
+        .bankName {
+            width: 22% !important;
+            margin-right: 1%;
+
+            p {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 16px;
+                color: #000000;
+                margin: 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .more {
+            width: calc(7% + 4px);
+        }
     }
 `;

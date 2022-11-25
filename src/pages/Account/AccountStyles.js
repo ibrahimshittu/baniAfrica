@@ -44,13 +44,26 @@ const VirtualAccounts = styled.div`
 `;
 
 const ActivityFeed = styled.div`
-    width: 33%;
+    width: ${(props) => (props.selectedAccount ? "33%" : "0%")};
     height: 100%;
     display: flex;
+    display: ${(props) => (props.selectedAccount ? "flex" : "none")};
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     margin-right: 36px;
+    transition: width 1s ease-in-out;
+    animation: 0.4s in-out forwards;
+
+    @keyframes in-out {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(0%);
+        }
+    }
 `;
 
 export {

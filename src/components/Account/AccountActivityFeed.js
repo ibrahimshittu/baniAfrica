@@ -1,11 +1,9 @@
 import React from "react";
-import polarisBank from "../../assets/Providus.svg";
 import arrowDown from "../../assets/arrow-down.svg";
 import styled from "styled-components";
-import formatSquareBlue from "../../assets/bankSquarePurple.svg";
 import arrowRight from "../../assets/arrow-right.svg";
 
-function AccountActivityFeed() {
+function AccountActivityFeed({ selectedAccount }) {
     return (
         <Container>
             <Header>
@@ -16,15 +14,14 @@ function AccountActivityFeed() {
                     <span>Active</span> • Created 16days ago
                 </p>
             </Header>
-            <BankDetails>
+            <BankDetails bankColor={selectedAccount?.backgroundColor}>
                 <div className="bankColor"></div>
                 <div className="bankNameandAccNumber">
-                    <img src={polarisBank} alt="" />
-
+                    <img src={selectedAccount?.image} alt="" />
                     <div className="goToAccountview">
                         <div className="bankName">
-                            <p>Guaranty Trust Bank</p>
-                            <p>0012345678</p>
+                            <p>{selectedAccount?.bankName}</p>
+                            <p>{selectedAccount?.accountNumber}</p>
                         </div>
                         <button>
                             Go to Account View
@@ -34,10 +31,13 @@ function AccountActivityFeed() {
                 </div>
             </BankDetails>
             <Transactions>
-                <InflowActivity>
+                <InflowActivity
+                    backgroundColor={selectedAccount?.backgroundColor}
+                    color={selectedAccount?.color}
+                >
                     <div className="inflowDetail">
                         <p>Total Inflow</p>
-                        <p>₦77,823.00</p>
+                        <p>₦{selectedAccount?.totalInflow.split(" ")[1]}</p>
                     </div>
                     <div className="inflowDetail">
                         <p>Last Activity Date</p>
@@ -46,7 +46,7 @@ function AccountActivityFeed() {
                     <div className="inflowDetail">
                         <p>Linked Branch</p>
                         <div className="location">
-                            <img src={formatSquareBlue} alt="" />
+                            <img src={selectedAccount?.square} alt="" />
                             <p>Dodo - Lekki II</p>
                         </div>
                     </div>
@@ -203,7 +203,7 @@ const BankDetails = styled.div`
     .bankColor {
         width: 100%;
         height: 45px;
-        background-color: #ffede3;
+        background-color: ${(props) => props.bankColor};
     }
 
     .bankNameandAccNumber {
@@ -258,6 +258,7 @@ const BankDetails = styled.div`
                 line-height: 18px;
 
                 color: #000000;
+                cursor: pointer;
 
                 img {
                     margin-left: 11px;
@@ -335,7 +336,7 @@ const InflowActivity = styled.div`
             justify-content: flex-start;
             align-items: flex-start;
             flex-direction: row;
-            padding: 4px 6px;
+            padding: 0px 6px;
             border-radius: 4px;
 
             img {

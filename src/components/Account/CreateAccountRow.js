@@ -61,6 +61,7 @@ const CreateButtons = styled.div`
         font-size: 16px;
         line-height: 16px;
         color: #65717c;
+        cursor: pointer;
 
         img {
             margin-right: 1rem;
@@ -83,6 +84,7 @@ const CreateButtons = styled.div`
         background: #5444f2;
         border-radius: 8px;
         margin-left: 1rem;
+        cursor: pointer;
 
         img {
             margin-right: 1rem;

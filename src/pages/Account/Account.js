@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CreateAccountRow from "../../components/Account/CreateAccountRow";
 import Header from "../../components/Account/Header";
 import SideBar from "../../components/Account/SideBar";
@@ -22,8 +22,10 @@ import formatSquarePurple from "../../assets/format-squarePurple.svg";
 import AccountActivityFeed from "../../components/Account/AccountActivityFeed";
 
 function Account() {
+    const [selectedAccount, setSelectedAccount] = useState(null);
     const Banks = [
         {
+            id: 1,
             bankName: "Polaris Bank Limited",
             accountNumber: "0012345678",
             location: "Dodo - Ikeja",
@@ -34,6 +36,7 @@ function Account() {
             square: formatSquareBlue,
         },
         {
+            id: 2,
             bankName: "Guaranty Trust Holding",
             accountNumber: "0023456781",
             location: "Dodo - Lekki II",
@@ -44,6 +47,7 @@ function Account() {
             square: formatSquareOrange,
         },
         {
+            id: 3,
             bankName: "Providus Bank PLC",
             accountNumber: "1002345678",
             location: "Dodo - Lekki II",
@@ -54,6 +58,7 @@ function Account() {
             square: formatSquareOrange,
         },
         {
+            id: 4,
             bankName: "First Bank of Nigeria",
             accountNumber: "2002345678",
             location: "Dodo - Abuja",
@@ -75,10 +80,13 @@ function Account() {
                     <AccountsActivityFeedRow>
                         <VirtualAccounts>
                             <VirtualAccountDetails />
-                            <YourVirtualAccounts banks={Banks} />
+                            <YourVirtualAccounts
+                                banks={Banks}
+                                setSelectedAccount={setSelectedAccount}
+                            />
                         </VirtualAccounts>
-                        <ActivityFeed>
-                            <AccountActivityFeed />
+                        <ActivityFeed selectedAccount={selectedAccount}>
+                            <AccountActivityFeed selectedAccount={selectedAccount} />
                         </ActivityFeed>
                     </AccountsActivityFeedRow>
                 </DashboardDetails>
