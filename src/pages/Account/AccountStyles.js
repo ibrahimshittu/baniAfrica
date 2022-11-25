@@ -44,7 +44,7 @@ const VirtualAccounts = styled.div`
 `;
 
 const ActivityFeed = styled.div`
-    width: 42%;
+    width: 33%;
     height: 100%;
     display: flex;
     justify-content: flex-start;
